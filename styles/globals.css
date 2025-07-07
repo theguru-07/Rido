@@ -1,0 +1,15 @@
+/* globals.css */
+
+@import "tailwindcss/preflight";
+@tailwind utilities;
+@tailwind utilities;
+
+/* Optional: custom base styles */
+
+body {
+  @apply bg-white text-gray-900 font-sans;
+}
+
+button {
+  @apply transition duration-200 ease-in-out;
+}
