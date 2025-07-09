@@ -1,7 +1,6 @@
-/* globals.css */
-
 @import "tailwindcss/preflight";
-@tailwind utilities;
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 /* Optional: custom base styles */
@@ -12,4 +11,7 @@ body {
 
 button {
   @apply transition duration-200 ease-in-out;
+}
+a {
+  @apply text-blue-600 hover:text-blue-800;
 }
