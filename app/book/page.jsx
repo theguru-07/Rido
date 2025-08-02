@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import connectToDatabase from '../../lib/mongodb';
+
 
 export default function BookRide() {
   const router = useRouter();
@@ -20,14 +22,23 @@ export default function BookRide() {
     setFare(baseFare + randomDistanceFare);
   };
 
-  const confirmRide = () => {
+  const confirmRide = async () => {
     if (!fare) {
       alert('Please estimate the fare first.');
       return;
     }
-    // Redirect to ride status
+    const res = await fetch('/api/bookings', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pickup, destination, fare }),
+  });
+  const data = await res.json();
+  if (data.success) {
     router.push('/ride-status');
-  };
+  } else {
+    alert("Booking failed");
+  }
+};
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-10">
